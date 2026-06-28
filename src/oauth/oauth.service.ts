@@ -18,7 +18,7 @@ export class OauthService {
         'neebys-secret',
 
       redirectUri:
-        'https://neebys-connect.vercel.app/success',
+        'https://chat.openai.com/aip/auth/callback',
     },
   ];
 
@@ -53,13 +53,14 @@ export class OauthService {
     redirectUri?: string,
   ) {
     const client =
-      this.clients.find(
-        (c) =>
-          c.clientId ===
-            clientId &&
-          c.redirectUri ===
-            redirectUri,
-      );
+  this.clients.find(
+    (c) =>
+      c.clientId === clientId,
+  );
+
+  const finalRedirect =
+  redirectUri ||
+  client?.redirectUri;
 
     if (!client) {
       return {
@@ -68,15 +69,16 @@ export class OauthService {
       };
     }
 
+
     const code =
       randomUUID();
 
     this.codes.add(code);
 
     return {
-      redirect:
-        `${redirectUri}?code=${code}`,
-    };
+  redirect:
+    `${finalRedirect}?code=${code}`,
+};
   }
 
   token(code: string) {

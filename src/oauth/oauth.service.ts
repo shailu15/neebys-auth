@@ -18,6 +18,16 @@ export class OauthService {
         'neebys-secret',
 
       redirectUri:
+        'https://neebys-connect.vercel.app/success',
+    },
+    {
+      clientId:
+        'chatgpt-neebys',
+
+      clientSecret:
+        'change-this-secret',
+
+      redirectUri:
         'https://chat.openai.com/aip/auth/callback',
     },
   ];
@@ -53,14 +63,11 @@ export class OauthService {
     redirectUri?: string,
   ) {
     const client =
-  this.clients.find(
-    (c) =>
-      c.clientId === clientId,
-  );
-
-  const finalRedirect =
-  redirectUri ||
-  client?.redirectUri;
+      this.clients.find(
+        (c) =>
+          c.clientId ===
+          clientId,
+      );
 
     if (!client) {
       return {
@@ -69,6 +76,16 @@ export class OauthService {
       };
     }
 
+    const finalRedirect =
+      redirectUri ||
+      client.redirectUri;
+
+    if (!finalRedirect) {
+      return {
+        message:
+          'Invalid redirect URI.',
+      };
+    }
 
     const code =
       randomUUID();
@@ -76,9 +93,9 @@ export class OauthService {
     this.codes.add(code);
 
     return {
-  redirect:
-    `${finalRedirect}?code=${code}`,
-};
+      redirect:
+        `${finalRedirect}?code=${code}`,
+    };
   }
 
   token(code: string) {
@@ -96,11 +113,11 @@ export class OauthService {
     const accessToken =
       randomUUID();
 
-    // IMPORTANT
     this.tokens.add(
       accessToken,
     );
 
+    // Demo mapping for now
     this.tokenUsers.set(
       accessToken,
       'demo',
@@ -176,6 +193,6 @@ export class OauthService {
     return {
       message:
         'Access token revoked successfully.',
-      };
+    };
   }
 }

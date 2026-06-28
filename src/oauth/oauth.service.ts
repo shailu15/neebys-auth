@@ -18,7 +18,7 @@ export class OauthService {
         'neebys-secret',
 
       redirectUri:
-        'http://localhost:5173/success',
+        'https://neebys-connect.vercel.app/success',
     },
   ];
 

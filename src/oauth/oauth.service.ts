@@ -10,27 +10,12 @@ export class OauthService {
     new Map<string, string>();
 
   private clients = [
-    {
-      clientId:
-        'chatgpt-dev',
-
-      clientSecret:
-        'neebys-secret',
-
-      redirectUri:
-        'https://neebys-connect.vercel.app/success',
-    },
-    {
-      clientId:
-        'chatgpt-neebys',
-
-      clientSecret:
-        'change-this-secret',
-
-      redirectUri:
-        'https://chat.openai.com/aip/auth/callback',
-    },
-  ];
+  {
+    clientId: 'chatgpt-neebys',
+    clientSecret: 'neebys-secret',
+    redirectUri: 'https://chat.openai.com/aip/auth/callback',
+  },
+];
 
   private codes =
     new Set<string>();

@@ -1,0 +1,12 @@
+{
+  "name": "NeebYs",
+  "description": "Connect ChatGPT to NeebYs.",
+  "version": "1.0.0",
+  "oauth": {
+    "authorization_url": "https://neebys-auth-production.up.railway.app/oauth/authorize",
+    "token_url": "https://neebys-auth-production.up.railway.app/oauth/token"
+  },
+  "api": {
+    "openapi_url": "https://raw.githubusercontent.com/shailu15/neebys-auth/main/openapi.yaml"
+  }
+}

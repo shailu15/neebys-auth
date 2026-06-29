@@ -1,10 +1,18 @@
 import {
   Controller,
   Get,
+  Headers,
 } from '@nestjs/common';
+
+import { OauthService }
+from './oauth/oauth.service';
 
 @Controller()
 export class AppController {
+  constructor(
+    private readonly oauthService: OauthService,
+  ) {}
+
   @Get('profile')
   profile() {
     return {
@@ -15,13 +23,19 @@ export class AppController {
   }
 
   @Get('me')
-  me() {
-    return {
-      uid: '1',
-      name: 'Shailu',
-      email: 'shailu@neebys.com',
-      connected: true,
-    };
+  me(
+    @Headers('authorization')
+    authorization?: string,
+  ) {
+    const token =
+      authorization?.replace(
+        'Bearer ',
+        '',
+      );
+
+    return this.oauthService.me(
+      token,
+    );
   }
 
   @Get('health')

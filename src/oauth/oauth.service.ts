@@ -84,41 +84,47 @@ export class OauthService {
   }
 
   token(code: string) {
-    if (
-      !this.codes.has(code)
-    ) {
-      return {
-        message:
-          'Invalid authorization code.',
-      };
-    }
-
-    this.codes.delete(code);
-
-    const accessToken =
-      randomUUID();
-
-    this.tokens.add(
-      accessToken,
-    );
-
-    // Demo mapping for now
-    this.tokenUsers.set(
-      accessToken,
-      'demo',
-    );
-
+  if (
+    !this.codes.has(code)
+  ) {
     return {
-      access_token:
-        accessToken,
-
-      token_type:
-        'Bearer',
-
-      expires_in:
-        3600,
+      message:
+        'Invalid authorization code.',
     };
   }
+
+  this.codes.delete(code);
+
+  const accessToken =
+    randomUUID();
+
+  this.tokens.add(
+    accessToken,
+  );
+
+  this.tokenUsers.set(
+    accessToken,
+    '1',
+  );
+
+  this.users.set('1', {
+    uid: '1',
+    name: 'Shailu',
+    email: 'shailu@neebys.com',
+    photo: '',
+  });
+
+  return {
+    access_token:
+      accessToken,
+
+    token_type:
+      'Bearer',
+
+    expires_in:
+      3600,
+  };
+}
 
   me(token?: string) {
     if (

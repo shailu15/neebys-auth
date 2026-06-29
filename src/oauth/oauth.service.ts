@@ -9,11 +9,18 @@ export class OauthService {
   private tokenUsers =
     new Map<string, string>();
 
-  private clients = [
+private clients = [
   {
     clientId: 'chatgpt-neebys',
     clientSecret: 'neebys-secret',
-    redirectUri: 'https://chat.openai.com/aip/auth/callback',
+    redirectUri:
+      'https://chat.openai.com/aip/auth/callback',
+  },
+  {
+    clientId: 'local-test',
+    clientSecret: 'test-secret',
+    redirectUri:
+      'http://localhost:5173/success',
   },
 ];
 

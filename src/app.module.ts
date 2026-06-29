@@ -9,11 +9,19 @@ from './auth/auth.module';
 import { AppController }
 from './app.controller';
 
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+
 @Module({
-  imports: [
+  imports:  [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..'),
+      serveRoot: '/',
+    }),
     AuthModule,
     OauthModule,
   ],
+
   controllers: [
     AppController,
   ],

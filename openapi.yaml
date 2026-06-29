@@ -11,8 +11,7 @@ paths:
   /profile:
     get:
       operationId: getProfile
-      summary: Get the currently connected NeebYs user's profile
-      description: Use this whenever the user asks who they are, asks for their profile, asks if they are connected to NeebYs, or requests account information.
+      summary: Get NeebYs profile
       responses:
         "200":
           description: Success
@@ -27,3 +26,24 @@ paths:
                     type: string
                   connected:
                     type: boolean
+
+  /me:
+    get:
+      operationId: getMe
+      summary: Get current user
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uid:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  photo:
+                    type: string

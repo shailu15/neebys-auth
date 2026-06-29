@@ -2,10 +2,11 @@ import {
   Controller,
   Get,
   Headers,
+  Res,
 } from '@nestjs/common';
 
-import { OauthService }
-from './oauth/oauth.service';
+import type { Response } from 'express';
+import { OauthService } from './oauth/oauth.service';
 
 @Controller()
 export class AppController {
@@ -27,11 +28,10 @@ export class AppController {
     @Headers('authorization')
     authorization?: string,
   ) {
-    const token =
-      authorization?.replace(
-        'Bearer ',
-        '',
-      );
+    const token = authorization?.replace(
+      'Bearer ',
+      '',
+    );
 
     return this.oauthService.me(
       token,
@@ -49,8 +49,12 @@ export class AppController {
   }
 
   @Get('openapi.yaml')
-openapi() {
-  return `
+  openapi(
+    @Res() res: Response,
+  ) {
+    res.type('text/yaml');
+
+    res.send(`
 openapi: 3.1.0
 
 info:
@@ -85,6 +89,6 @@ paths:
       responses:
         '200':
           description: Success
-`;
-}
+`);
+  }
 }

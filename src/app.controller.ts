@@ -47,4 +47,14 @@ export class AppController {
       uptime: 'running',
     };
   }
+
+  @Get('openapi.yaml')
+  openapi() {
+    return `
+openapi: 3.1.0
+info:
+  title: NeebYs
+  version: 1.0.0
+`;
+  }
 }

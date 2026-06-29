@@ -1,16 +1,19 @@
 import { Module } from '@nestjs/common';
-import { OauthController } from './oauth.controller';
-import { OauthService } from './oauth.service';
-import { AuthModule } from '../auth/auth.module';
+
+import { OauthController }
+from './oauth.controller';
+
+import { OauthService }
+from './oauth.service';
 
 @Module({
-  imports: [
-    AuthModule,
-  ],
   controllers: [
     OauthController,
   ],
   providers: [
+    OauthService,
+  ],
+  exports: [
     OauthService,
   ],
 })

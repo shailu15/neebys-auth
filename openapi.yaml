@@ -1,4 +1,5 @@
 openapi: 3.1.0
+
 info:
   title: NeebYs
   version: 1.0.0
@@ -13,37 +14,21 @@ paths:
       operationId: getProfile
       summary: Get NeebYs profile
       responses:
-        "200":
+        '200':
           description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  app:
-                    type: string
-                  user:
-                    type: string
-                  connected:
-                    type: boolean
 
   /me:
     get:
       operationId: getMe
       summary: Get current user
       responses:
-        "200":
+        '200':
           description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  uid:
-                    type: string
-                  name:
-                    type: string
-                  email:
-                    type: string
-                  photo:
-                    type: string
+
+  /health:
+    get:
+      operationId: getHealth
+      summary: Check API health
+      responses:
+        '200':
+          description: Success

@@ -49,12 +49,42 @@ export class AppController {
   }
 
   @Get('openapi.yaml')
-  openapi() {
-    return `
+openapi() {
+  return `
 openapi: 3.1.0
+
 info:
   title: NeebYs
   version: 1.0.0
+  description: NeebYs ChatGPT Integration
+
+servers:
+  - url: https://neebys-auth-production.up.railway.app
+
+paths:
+  /profile:
+    get:
+      operationId: getProfile
+      summary: Get NeebYs profile
+      responses:
+        '200':
+          description: Success
+
+  /me:
+    get:
+      operationId: getMe
+      summary: Get current user
+      responses:
+        '200':
+          description: Success
+
+  /health:
+    get:
+      operationId: getHealth
+      summary: Check API health
+      responses:
+        '200':
+          description: Success
 `;
-  }
+}
 }

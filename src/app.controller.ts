@@ -13,4 +13,14 @@ export class AppController {
       connected: true,
     };
   }
+
+  @Get('me')
+  me() {
+    return {
+      uid: '1',
+      name: 'Shailu',
+      email: 'shailu@neebys.com',
+      connected: true,
+    };
+  }
 }

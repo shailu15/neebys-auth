@@ -23,4 +23,14 @@ export class AppController {
       connected: true,
     };
   }
+
+  @Get('health')
+  health() {
+    return {
+      status: 'ok',
+      app: 'neebYs',
+      version: '1.0.0',
+      uptime: 'running',
+    };
+  }
 }
